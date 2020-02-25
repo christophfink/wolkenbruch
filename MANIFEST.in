@@ -1,0 +1,6 @@
+include requirements.txt
+include CHANGELOG
+include LICENSE
+include versioneer.py
+include wolkenbruch/_version.py
+include wolkenbruch.yml.example
