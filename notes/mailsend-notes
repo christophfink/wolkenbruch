@@ -1,0 +1,29 @@
+>>> with smtplib.SMTP("localhost") as smtp:
+...     smtp.noop()
+... 
+(250, b'2.0.0 Ok')
+>>> with smtplib.SMTP("localhost") as smtp:
+KeyboardInterrupt
+>>> from email.message import EmailMessage
+>>> msg = EmailMessage()
+>>> msg.set_content("test test test")
+>>> msg["Subject"] = "test"
+>>> msg["From"] = "christoph.fink@gmail.com"
+>>> msg["From"] = "chri@stoph.at"
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/usr/lib/python3.8/email/message.py", line 407, in __setitem__
+    raise ValueError("There may be at most {} {} headers "
+ValueError: There may be at most 1 From headers in a message
+>>> msg = EmailMessage()
+>>> msg.set_content("test test test")
+>>> msg["From"] = "chri@stoph.at"
+>>> msg["Subject"] = "test"
+>>> msg["To"] = "christoph.fink@gmail.com"
+>>> with smtplib.SMTP("localhost") as smtp:
+...     smtp.send
+smtp.send(          smtp.send_message(  smtp.sendmail(
+...     smtp.send_message(msg)
+... 
+{}
+

@@ -1,0 +1,8 @@
+smtp:
+    host:     localhost:587
+    user:     foobar
+    password: BARFOO
+email:
+    from:     christoph@christophfink.com
+    to:       christoph@christophfink.com
+place: Helsinki
