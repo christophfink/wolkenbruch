@@ -89,7 +89,7 @@ Run `wolkenbruch` to check the precipitation for the next 14 hours and send you 
 
 #### Systemd timer
 
-Copy `wolkenbruch@.service` and `wolkenbruch@.timer` from [extras/systemd/](https://gitlab.com/christoph.fink/wolkenbruch/-/tree/master/extras/systemd/) to `/etc/systemd/system/` and enable the timer to run wolkenbruch for user `christoph` every morning:
+Copy `wolkenbruch@.service` and `wolkenbruch@.timer` from [extra/systemd/](https://gitlab.com/christoph.fink/wolkenbruch/-/tree/master/extra/systemd/) to `/etc/systemd/system/` and enable the timer to run wolkenbruch for user `christoph` every morning:
 
 ```sh
 sudo systemctl daemon-reload
