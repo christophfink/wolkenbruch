@@ -1,3 +1,5 @@
+![rain cloud](extra/img/wolkenbruch_256x160.svg)
+
 # Wolkenbruch
 
 Checks the weather forecast for a configurable place and sends an e-mail
