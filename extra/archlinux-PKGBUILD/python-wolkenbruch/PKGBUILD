@@ -34,8 +34,8 @@ package() {
 
     # install systemd service + timer
     install -Dm644 \
-        "${srcdir}/extra/systemd/wolkenbruch@.{timer,service}" \
-        "${pkgdir}/usr/lib/systemd/system/"
+        "extra/systemd/wolkenbruch@."{timer,service} \
+        -t "${pkgdir}/usr/lib/systemd/system/"
 
     install -Dm644 \
         LICENSE.txt \
