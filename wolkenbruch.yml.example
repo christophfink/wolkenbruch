@@ -3,6 +3,6 @@ smtp:
     user:     foobar
     password: BARFOO
 email:
-    from:     christoph@christophfink.com
-    to:       christoph@christophfink.com
+    from:     me@whereever.com
+    to:       myself@whereever.com
 place: Helsinki
