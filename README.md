@@ -63,6 +63,7 @@ Adapt the configuration:
 - Adapt the SMTP host and credentials (leave user and password empty if not authentication is required)
 - Set the sender and receiver e-mail address (they can and often will be the same address)
 - If you feel like it, change the subject line and message body of the e-mail. The message body can contain [Python string formatting code](https://docs.python.org/3/library/string.html#formatstrings) for a float variable `p` (the average precipitation rate over the next 14 hours, in mm/h).
+- Finally, adjust the amount of rain you can stand: `precipitation_rate_threshold` is the average precipitation rate over the next 14 hours (in mm per hour) that has to be exceeded to send you a reminder.
 
 ```yaml
 # example configuration file
@@ -78,6 +79,7 @@ email:
     subject:  Pack your rain gear!
     message:  The forecast precipitation rate for today is {p:.1f}.
 place: Helsinki
+precipitation_rate_threshold: 0.1
 ```
 
 ### Usage
