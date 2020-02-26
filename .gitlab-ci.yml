@@ -1,0 +1,8 @@
+include:
+    - remote: 'https://gitlab.com/christoph.fink/ci-cd-toolbox/raw/master/python/gitlab-ci.yaml?ref=master&private_token=$CI_JOB_TOKEN&.yaml'
+    #- project: "ci-cd-toolbox"
+    #  ref: master
+    #  file: "/python/gitlab-ci.yaml"
+
+variables: 
+    PACKAGE_NAME: wolkenbruch
