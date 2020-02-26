@@ -5,4 +5,8 @@ smtp:
 email:
     from:     me@whereever.com
     to:       myself@whereever.com
+    subject:  Pack your rain gear!
+    message:  The forecast precipitation rate for today is {p:.1f}.
 place: Helsinki
+precipitation_rate_threshold: 0.1
+
