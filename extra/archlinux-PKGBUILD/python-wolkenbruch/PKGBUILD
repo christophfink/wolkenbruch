@@ -1,9 +1,9 @@
 # Maintainer: peippo <christoph.fink@gmail.com>
 
-pkgname="python-wolkenbruch"
-_name=${pkgname#python-}
+pkgname=python-wolkenbruch
+_name="${pkgname#python-}"
 pkgdesc="Remind you to pack your rain gear when it’s forecast to rain"
-url="https://gitlab.com/christophfink/wolkenbruch
+url="https://gitlab.com/christophfink/wolkenbruch/"
 
 pkgver=0.0.0
 pkgrel=0
@@ -24,7 +24,7 @@ source=("https://files.pythonhosted.org/packages/source/${_name::1}/$_name/$_nam
 sha256sums=("")
 
 build() {
-    cd "${srcdir}"/${_name}-${pkgver}
+    cd "${srcdir}/${_name}-${pkgver}"
     python setup.py build
 }
 
@@ -32,5 +32,12 @@ package() {
     cd "${srcdir}/${_name}-${pkgver}"
     python setup.py install --root="${pkgdir}" --optimize=1
 
-    install -Dm644 LICENSE.txt "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+    # install systemd service + timer
+    install -Dm644 \
+        "${srcdir}/extra/systemd/wolkenbruch@.{timer,service}" \
+        "${pkgdir}/usr/lib/systemd/system/"
+
+    install -Dm644 \
+        LICENSE.txt \
+        "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
