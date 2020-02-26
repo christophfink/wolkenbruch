@@ -7,24 +7,28 @@ import versioneer
 
 
 with open("README.md") as f:
-    longDescription = f.read()
+    LONG_DESCRIPTION = f.read()
 
 with open("requirements.txt") as f:
-    requirements = f.read()
+    REQUIREMENTS = f.read()
 
-packageName = setuptools.find_packages()[0]
+PACKAGE_NAMES = setuptools.find_packages()
+
+print(setuptools.find_packages())
 
 setuptools.setup(
-    name=packageName,
+    name=PACKAGE_NAMES[0],
     version=versioneer.get_version(),
     author="Christoph Fink",
-    author_email="christoph.fink@helsinki.fi",
-    description="Wolkenbruch",
-    long_description=longDescription,
+    author_email="christoph.fink@gmail.com",
+    description="Checks the weather forecast for your home town and " +
+    "sends an e-mail reminder to pack your rain gear if precipitation " +
+    "is forecast.",
+    long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
     url="https://gitlab.com/christoph.fink/wolkenbruch",
-    packages=[packageName],
-    install_requires=requirements,
+    packages=PACKAGE_NAMES,
+    install_requires=REQUIREMENTS,
     cmdclass=versioneer.get_cmdclass(),
     classifiers=[
         "Programming Language :: Python :: 3",
