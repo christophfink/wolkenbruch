@@ -7,7 +7,7 @@ Wolkenbruch makes use of the [MET Norway API](https://api.met.no/), and uses [Op
 
 ### Dependencies
 
-Wolkenbruch is written in Python 3, and depends on the Python modules [geocoder](https://geocoder.readthedocs.io/) and [requests](https://2.python-requests.org/).
+Wolkenbruch is written in Python 3, and depends on the Python modules [geocoder](https://geocoder.readthedocs.io/), [requests](https://2.python-requests.org/) and [yaml](https://pyyaml.org/).
 
 ### Installation
 
