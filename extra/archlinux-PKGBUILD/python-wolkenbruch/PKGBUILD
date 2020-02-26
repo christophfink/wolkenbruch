@@ -38,6 +38,6 @@ package() {
         -t "${pkgdir}/usr/lib/systemd/system/"
 
     install -Dm644 \
-        LICENSE.txt \
+        LICENSE \
         "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
