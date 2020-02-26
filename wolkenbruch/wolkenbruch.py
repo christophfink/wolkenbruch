@@ -37,7 +37,7 @@ def remind_me_if_it_rains():
     lat, lon = geocoder.osm(config["place"]).latlng
     precipitation_rate = \
         PrecipitationChecker(lat, lon).average_precipitation_per_hour
-    if precipitation_rate > -0.1:
+    if precipitation_rate > 0.1:
         EMailSender(
             config["email"]["from"],
             config["email"]["to"],

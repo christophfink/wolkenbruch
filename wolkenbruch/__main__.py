@@ -22,6 +22,7 @@
 
 from .wolkenbruch import remind_me_if_it_rains
 
+
 def main():
     """ Check the precipitation for the next 14h at a given location and send
         an e-mail to remind me to pack rain gear """
