@@ -16,8 +16,9 @@ makedepends=(
 )
 depends=(
     "python"
-    "python-requests"
     "python-geocoder"
+    "python-pyaml"
+    "python-requests"
 )
 
 source=("https://files.pythonhosted.org/packages/source/${_name::1}/$_name/$_name-$pkgver.tar.gz")
