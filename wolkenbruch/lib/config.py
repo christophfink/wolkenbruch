@@ -22,7 +22,6 @@
 __all__ = []
 
 
-import enum
 import os
 import os.path
 import sys
@@ -31,7 +30,7 @@ import warnings
 import yaml
 
 
-class Config(enum.Enum):
+class Config:
     """ Global configuration object
 
         Tries to load configuration from YAML files in default locations
