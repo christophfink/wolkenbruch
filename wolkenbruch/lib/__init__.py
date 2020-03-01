@@ -18,11 +18,11 @@
 """ Wolkenbruch library function """
 
 __all__ = [
-    "config",
+    "Config",
     "EMailSender",
     "PrecipitationChecker"
 ]
 
-from . import config
+from .config import Config
 from .emailsender import EMailSender
 from .precipitationchecker import PrecipitationChecker

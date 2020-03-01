@@ -112,7 +112,3 @@ class Config:
 
     def __iter__(self):
         return iter(self._config)
-
-
-CONFIG = Config()
-sys.modules[__name__] = CONFIG

@@ -23,7 +23,7 @@ import sys
 import geocoder
 
 from .lib import (
-    config,
+    Config,
     EMailSender,
     PrecipitationChecker
 )
@@ -36,6 +36,8 @@ __all__ = [
 
 def remind_me_if_it_rains():
     """ Remind me if rain is forecast """
+    config = Config()
+
     try:
         verbose = config["verbose"]
     except KeyError:
