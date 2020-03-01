@@ -18,6 +18,8 @@
 
 """ Reminds me if it rains """
 
+import sys
+
 import geocoder
 
 from .lib import (
@@ -34,9 +36,29 @@ __all__ = [
 
 def remind_me_if_it_rains():
     """ Remind me if rain is forecast """
+    try:
+        verbose = config["verbose"]
+    except KeyError:
+        verbose = False
+
     lat, lon = geocoder.osm(config["place"]).latlng
+
     precipitation_rate = \
         PrecipitationChecker(lat, lon).average_precipitation_per_hour
+
+    if verbose:
+        print(
+            (
+                "Average precipitation rate in {place:s} is {p:0.2f} mm/h " +
+                "over the next 14 hours. "
+            ).format(
+                place=config["place"],
+                p=precipitation_rate
+            ),
+            file=sys.stderr,
+            end=""
+        )
+
     if precipitation_rate > 0.1:
         EMailSender(
             config["email"]["from"],
@@ -47,3 +69,15 @@ def remind_me_if_it_rains():
             config["smtp"]["user"],
             config["smtp"]["password"]
         ).send_message()
+
+        if verbose:
+            print(
+                "Sending reminder to {:s} ".format(config["email"]["to"]),
+                file=sys.stderr
+            )
+    else:
+        if verbose:
+            print(
+                "NOT sending reminder to {:s} ".format(config["email"]["to"]),
+                file=sys.stderr
+            )

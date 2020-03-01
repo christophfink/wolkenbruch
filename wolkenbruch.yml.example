@@ -9,4 +9,5 @@ email:
     message:  The forecast precipitation rate for today is {p:.1f}.
 place: Helsinki
 precipitation_rate_threshold: 0.1
+verbose: False
 
