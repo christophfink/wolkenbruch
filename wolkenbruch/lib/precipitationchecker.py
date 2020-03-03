@@ -79,3 +79,11 @@ class PrecipitationChecker:
                 "./product/time/location/precipitation"
             )
         ]
+
+    @property
+    def hourly_precipitation_rates(self):
+        """ How much precipitation is forecast
+            for the next n hours in mm/h """
+        if not self.precipitation:
+            self._fetch_weather_forecast()
+        return self.precipitation
