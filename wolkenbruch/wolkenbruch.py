@@ -50,7 +50,7 @@ def remind_me_if_it_rains():
     lat, lon = geocoder.osm(config["place"]).latlng
 
     hourly_precipitation_rates = \
-        PrecipitationChecker(lat, lon).precipitation[:N_HOURS]
+        PrecipitationChecker(lat, lon).hourly_precipitation_rates[:N_HOURS]
 
     average_precipitation_rate = \
         statistics.fmean(hourly_precipitation_rates)
