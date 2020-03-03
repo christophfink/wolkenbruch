@@ -1,3 +1,5 @@
+0.5.0 (2020-03-03):
+    - (new feature) configurable thresholds for maximum and average precipitation rates
 0.4.3 (2020-03-01): 
     - (new feature) `verbose` flag to have `wolkenbruch` print its status
 0.4.2 (2020-02-27):
