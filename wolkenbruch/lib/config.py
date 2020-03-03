@@ -48,6 +48,10 @@ class Config:
                 file locations
             config_files_basename (str): override configuration file names
     """
+    DEFAULT_CONFIG = os.path.join(
+        os.path.dirname(__file__),
+        "default.yml"
+    )
 
     def __init__(
             self,

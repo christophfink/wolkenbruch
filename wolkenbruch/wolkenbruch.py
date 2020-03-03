@@ -61,7 +61,7 @@ def remind_me_if_it_rains():
         print(
             (
                 "Average precipitation rate in {place:s} is {a:0.2f} mm/h " +
-                "over the next 14 hours, maximum {m:0.2f} "
+                "over the next 14 hours, maximum {m:0.2f}. "
             ).format(
                 place=config["place"],
                 a=average_precipitation_rate,
