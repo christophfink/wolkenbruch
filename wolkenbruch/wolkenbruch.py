@@ -72,8 +72,11 @@ def remind_me_if_it_rains():
         )
 
     if (
-            average_precipitation_rate > config["average_precipitation_threshold"]  # noqa: E501
-            or max_precipitation_rate > config["max_precipitation_threshold"]
+            average_precipitation_rate
+            > config["average_precipitation_rate_threshold"]
+
+            or max_precipitation_rate
+            > config["max_precipitation_rate_threshold"]
     ):
         EMailSender(
             config["email"]["from"],

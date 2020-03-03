@@ -65,7 +65,7 @@ Adapt the configuration:
 - Adapt the SMTP host and credentials (leave user and password empty if not authentication is required). **Be careful:** the credentials are (obviously) saved in plain-text. Protect access to the configuration file, e.g. on a GNU/Linux or MacOS system using `chmod 0600 "~/.config/wolkenbruch.yml"`.
 - Set the sender and receiver e-mail address (they can and often will be the same address)
 - If you feel like it, change the subject line and message body of the e-mail. The message body can contain [Python string formatting code](https://docs.python.org/3/library/string.html#formatstrings) for a float variables `a` and `m` (the average and maximum precipitation rates over the next 14 hours, in mm/h).
-- Adjust the amount of rain you can stand: `average_precipitation_rate_threshold` is the average precipitation rate over the next 14 hours (in mm per hour) that has to be exceeded to send you a reminder, `max_precipitation_threshold` the highest single hourly value that makes you want to not forget your rain gear.
+- Adjust the amount of rain you can stand: `average_precipitation_rate_threshold` is the average precipitation rate over the next 14 hours (in mm per hour) that has to be exceeded to send you a reminder, `max_precipitation_rate_threshold` the highest single hourly value that makes you want to not forget your rain gear.
 - The verbose flag toggles whether `wolkenbruch` prints a status or operated silently.
 
 ```yaml
