@@ -24,7 +24,6 @@ __all__ = []
 
 import os
 import os.path
-import sys
 import warnings
 
 import yaml

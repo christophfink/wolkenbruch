@@ -19,7 +19,6 @@
 """ Checks the precipitation over the next n hours at a given location """
 
 
-import statistics
 import xml.etree.ElementTree
 
 import requests
@@ -80,13 +79,3 @@ class PrecipitationChecker:
                 "./product/time/location/precipitation"
             )
         ]
-
-    @property
-    def average_precipitation_per_hour(self):
-        """ How much precipitation is forecast
-            for the next n hours in mm/h """
-        if not self.precipitation:
-            self._fetch_weather_forecast()
-        return statistics.fmean(
-            self.precipitation[:self.n_hours]
-        )

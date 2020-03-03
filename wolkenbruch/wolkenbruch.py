@@ -18,6 +18,7 @@
 
 """ Reminds me if it rains """
 
+import statistics
 import sys
 
 import geocoder
@@ -33,6 +34,9 @@ __all__ = [
     "remind_me_if_it_rains"
 ]
 
+# How many hours to look into the future?
+N_HOURS = 14
+
 
 def remind_me_if_it_rains():
     """ Remind me if rain is forecast """
@@ -45,28 +49,40 @@ def remind_me_if_it_rains():
 
     lat, lon = geocoder.osm(config["place"]).latlng
 
-    precipitation_rate = \
-        PrecipitationChecker(lat, lon).average_precipitation_per_hour
+    hourly_precipitation_rates = \
+        PrecipitationChecker(lat, lon).precipitation[:N_HOURS]
+
+    average_precipitation_rate = \
+        statistics.fmean(hourly_precipitation_rates)
+    max_precipitation_rate = \
+        max(hourly_precipitation_rates)
 
     if verbose:
         print(
             (
-                "Average precipitation rate in {place:s} is {p:0.2f} mm/h " +
-                "over the next 14 hours. "
+                "Average precipitation rate in {place:s} is {a:0.2f} mm/h " +
+                "over the next 14 hours, maximum {m:0.2f} "
             ).format(
                 place=config["place"],
-                p=precipitation_rate
+                a=average_precipitation_rate,
+                m=max_precipitation_rate
             ),
             file=sys.stderr,
             end=""
         )
 
-    if precipitation_rate > 0.1:
+    if (
+            average_precipitation_rate > config["average_precipitation_threshold"]  # noqa: E501
+            or max_precipitation_rate > config["max_precipitation_threshold"]
+    ):
         EMailSender(
             config["email"]["from"],
             config["email"]["to"],
             config["email"]["subject"],
-            config["email"]["message"].format(p=precipitation_rate),
+            config["email"]["message"].format(
+                a=average_precipitation_rate,
+                m=max_precipitation_rate
+            ),
             config["smtp"]["host"],
             config["smtp"]["user"],
             config["smtp"]["password"]

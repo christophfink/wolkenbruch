@@ -64,8 +64,8 @@ Adapt the configuration:
 - Change the place the forecast searches for. For bigger cities their name might be sufficient (Unicode is supported), e.g. “Helsinki”. When it comes to smaller places, or places that share their name with other places in different parts of the world, you might have to add a country, state or county name, e.g. ”Springfield, Fife”.
 - Adapt the SMTP host and credentials (leave user and password empty if not authentication is required). **Be careful:** the credentials are (obviously) saved in plain-text. Protect access to the configuration file, e.g. on a GNU/Linux or MacOS system using `chmod 0600 "~/.config/wolkenbruch.yml"`.
 - Set the sender and receiver e-mail address (they can and often will be the same address)
-- If you feel like it, change the subject line and message body of the e-mail. The message body can contain [Python string formatting code](https://docs.python.org/3/library/string.html#formatstrings) for a float variable `p` (the average precipitation rate over the next 14 hours, in mm/h).
-- Adjust the amount of rain you can stand: `precipitation_rate_threshold` is the average precipitation rate over the next 14 hours (in mm per hour) that has to be exceeded to send you a reminder.
+- If you feel like it, change the subject line and message body of the e-mail. The message body can contain [Python string formatting code](https://docs.python.org/3/library/string.html#formatstrings) for a float variables `a` and `m` (the average and maximum precipitation rates over the next 14 hours, in mm/h).
+- Adjust the amount of rain you can stand: `average_precipitation_rate_threshold` is the average precipitation rate over the next 14 hours (in mm per hour) that has to be exceeded to send you a reminder, `max_precipitation_threshold` the highest single hourly value that makes you want to not forget your rain gear.
 - The verbose flag toggles whether `wolkenbruch` prints a status or operated silently.
 
 ```yaml
@@ -80,9 +80,10 @@ email:
     from:     me@wherever.com
     to:       myself@wherever.com
     subject:  Pack your rain gear!
-    message:  The forecast precipitation rate for today is {p:.1f}.
+    message:  The forecast precipitation rate for today is {a:.2f} mm/h, maximum {m:2f} mm/h.
 place: Helsinki
-precipitation_rate_threshold: 0.1
+average_precipitation_rate_threshold: 0.1
+max_precipitation_rate_threshold: 0.5
 verbose: False
 ```
 
@@ -93,7 +94,7 @@ Run `wolkenbruch` to check the precipitation for the next 14 hours and send you 
 
 #### Systemd timer
 
-Copy `wolkenbruch@.service` and `wolkenbruch@.timer` from [extra/systemd/](https://gitlab.com/christoph.fink/wolkenbruch/-/tree/master/extra/systemd/) to `/etc/systemd/system/` and enable the timer to run wolkenbruch for user `christoph` every morning:
+Copy `wolkenbruch@.service` and `wolkenbruch@.timer` from [extra/systemd/](https://gitlab.com/christoph.fink/wolkenbruch/-/tree/master/extra/systemd/) to `/etc/systemd/system/` and enable the timer to run wolkenbruch for user `christoph` at 6:30 every morning:
 
 ```sh
 sudo systemctl daemon-reload
