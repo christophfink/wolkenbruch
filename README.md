@@ -77,8 +77,8 @@ smtp:
     user:     foobar
     password: BARFOO
 email:
-    from:     me@wherever.com
-    to:       myself@wherever.com
+    from:     me@whereever.com
+    to:       myself@whereever.com
     subject:  Pack your rain gear!
     message:  The forecast precipitation rate for today is {a:.2f} mm/h, maximum {m:2f} mm/h.
 place: Helsinki
@@ -94,9 +94,15 @@ Run `wolkenbruch` to check the precipitation for the next 14 hours and send you 
 
 #### Systemd timer
 
-Copy `wolkenbruch@.service` and `wolkenbruch@.timer` from [extra/systemd/](https://gitlab.com/christoph.fink/wolkenbruch/-/tree/master/extra/systemd/) to `/etc/systemd/system/` and enable the timer to run wolkenbruch for user `christoph` at 6:30 every morning:
+Copy `wolkenbruch.service` and `wolkenbruch.timer` from [extra/systemd/](https://gitlab.com/christoph.fink/wolkenbruch/-/tree/master/extra/systemd/) to `/etc/systemd/user/` or `~/.config/systemd/user/` and enable the timer to run wolkenbruch at 6:30 every morning:
 
 ```sh
-sudo systemctl daemon-reload
-sudo systemctl enable --now wolkenbruch@christoph.timer 
+systemctl --user daemon-reload
+systemctl --user enable --now wolkenbruch.timer 
+```
+
+If you want the systemd timer to trigger when you’re not logged in, enable [_lingering_](https://wiki.archlinux.org/index.php/Systemd/User#Automatic_start-up_of_systemd_user_instances) for your user:
+
+```sh
+sudo loginctl enable-linger USERNAME
 ```

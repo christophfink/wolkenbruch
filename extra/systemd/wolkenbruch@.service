@@ -1,6 +1,0 @@
-[Unit]
-Description = Check whether it’s likely to rain and send an e-mail reminder for user %i
-
-[Service]
-ExecStart = /usr/bin/wolkenbruch
-User = %i
