@@ -5,5 +5,5 @@ include versioneer.py
 include wolkenbruch/_version.py
 include wolkenbruch/lib/default.yml
 include wolkenbruch.yml.example
-include extra/systemd/wolkenbruch@.service
-include extra/systemd/wolkenbruch@.timer
+include extra/systemd/wolkenbruch.service
+include extra/systemd/wolkenbruch.timer

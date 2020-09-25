@@ -1,3 +1,5 @@
+0.6.1 (2020-09-25):
+    - fixed Arch PKGBUILD
 0.6.0 (2020-09-24):
     - changed systemd template to run in user mode
     - corrected typos in README
