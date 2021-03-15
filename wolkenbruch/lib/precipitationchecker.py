@@ -19,8 +19,6 @@
 """ Checks the precipitation over the next n hours at a given location """
 
 
-import xml.etree.ElementTree
-
 import requests
 
 
@@ -38,7 +36,11 @@ class PrecipitationChecker:
             n_hours:    calculate the average precipitation
                         rate for the next `n_hours` hours
     """
-    API_ENDPOINT = "https://api.met.no/weatherapi/locationforecast/1.9/"
+    API_VERSION = "2.0"
+    API_ENDPOINT = "https://api.met.no/weatherapi/locationforecast/{VERSION:s}/compact".format(VERSION=API_VERSION)
+    API_HEADERS = {
+        "User-agent": "python-wolkenbruch (https://gitlab.com/christoph.fink/wolkenbruch/"
+    }
 
     def __init__(
             self,
@@ -48,13 +50,14 @@ class PrecipitationChecker:
             *args,
             **kwargs
     ):
-        """ Check the forecast precipitation at a location
+        """
+        Check the forecast precipitation at a location.
 
-            Args:
-                lat:        Latitude
-                lon:        Longitude
-                n_hours:    calculate the average precipitation
-                            rate for the next `n_hours` hours
+        Args:
+            lat:        Latitude
+            lon:        Longitude
+            n_hours:    calculate the average precipitation
+                        rate for the next `n_hours` hours
         """
         self.lat = lat
         self.lon = lon
@@ -68,22 +71,29 @@ class PrecipitationChecker:
             params={
                 "lat": self.lat,
                 "lon": self.lon
-            }
+            },
+            headers=self.API_HEADERS
         )
-        forecast = xml.etree.ElementTree.fromstring(forecast.text)
+        forecast = forecast.json()
+
+        with open("/tmp/wolkenbruch.json", "w") as f:
+            import json
+            f.write(json.dumps(forecast, sort_keys=True, indent=4))
 
         self.precipitation = [
-            float(precipitation.get("value"))
-            for precipitation in
-            forecast.findall(
-                "./product/time/location/precipitation"
-            )
+            timestamp["data"]["next_1_hours"]["details"]["precipitation_amount"]
+            for timestamp in forecast["properties"]["timeseries"]
+            if "next_1_hours" in timestamp["data"]
         ]
 
     @property
     def hourly_precipitation_rates(self):
-        """ How much precipitation is forecast
-            for the next n hours in mm/h """
+        """
+        Retrieve precipitation rates by hour.
+
+        How much precipitation is forecast
+        for the next n hours in mm/h
+        """
         if not self.precipitation:
             self._fetch_weather_forecast()
         return self.precipitation
