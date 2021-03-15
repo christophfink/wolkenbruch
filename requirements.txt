@@ -1,3 +1,0 @@
-geocoder
-pyyaml
-requests
