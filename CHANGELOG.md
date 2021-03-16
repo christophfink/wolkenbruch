@@ -1,3 +1,6 @@
+- **0.6.4** (2021-03-16):
+    - fix systemd data_files location
+
 - **0.6.3** (2021-03-15):
     - adopted met.no API 2.0
     - changed to PEP517 build
