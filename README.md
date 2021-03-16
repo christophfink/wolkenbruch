@@ -35,14 +35,6 @@ pip3 install wolkenbruch
     python3 ./setup.py install
     ```
 
-- *OR: (Arch Linux only) from [AUR](https://aur.archlinux.org/packages/python-wolkenbruch):*
-
-```shell
-# e.g. using yay
-yay python-wolkenbruch
-```
-
-
 ### Configuration
 
 Copy the example configuration file [wolkenbruch.yml.example](https://gitlab.com/christoph.fink/wolkenbruch/-/raw/master/wolkenbruch.yml.example) to a suiteable location, depending on your operating system:

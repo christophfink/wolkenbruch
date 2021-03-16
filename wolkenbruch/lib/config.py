@@ -74,9 +74,9 @@ class Config:
                 os.path.abspath(
                     os.path.join(
                         (
-                            os.environ.get('APPDATA') or
-                            os.environ.get('XDG_CONFIG_HOME') or
-                            os.path.join(os.environ['HOME'], '.config')
+                            os.environ.get('APPDATA')
+                            or os.environ.get('XDG_CONFIG_HOME')
+                            or os.path.join(os.environ['HOME'], '.config')
                         ),
                         "{:s}.yml".format(config_files_basename)
                     )

@@ -1,3 +1,7 @@
+- **0.6.3** (2021-03-15):
+    - adopted met.no API 2.0
+    - changed to PEP517 build
+
 - **0.6.2** (2020-12-04):
     - removed Arch-only AUR PKGBUILD
 

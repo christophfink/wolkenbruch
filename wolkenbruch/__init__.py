@@ -15,15 +15,21 @@
 #
 #   You should have received a copy of the GNU General Public License
 #   along with this program; if not, see <http://www.gnu.org/licenses/>.
-""" Checks the forecast precipitation rate for the next 14h and sends
-    an e-mail to remind me to take my rain gear with me """
+
+"""
+Check the weather forecast.
+
+Checks the forecast precipitation rate for the next 14h and sends
+an e-mail to remind me to take my rain gear with me
+"""
 
 __all__ = [
-    "main",
-    "__version__"
+    "__version__",
+    "remind_me_if_it_rains"
 ]
 
-from .__main__ import main
-from ._version import get_versions
-__version__ = get_versions()['version']
-del get_versions
+
+from .wolkenbruch import remind_me_if_it_rains
+
+
+__version__ = "0.6.3"
