@@ -86,8 +86,8 @@ class EMailSender:
             if self.starttls:
                 smtp.starttls()
             if (
-                    self.smtp_user != "" and
-                    self.smtp_password != ""
+                    self.smtp_user != ""
+                    and self.smtp_password != ""
             ):
                 smtp.login(
                     self.smtp_user,
