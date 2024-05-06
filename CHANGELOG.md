@@ -1,3 +1,6 @@
+- **0.7.1** (2024-05-06):
+    - migrate source repository and build toolchain to GitHub
+
 - **0.7.0** (2024-05-06):
     - migrate to clean pyproject.toml and hatchling
     - change default config file handling
