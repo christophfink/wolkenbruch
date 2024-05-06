@@ -1,3 +1,8 @@
+- **0.6.6** (2024-05-06):
+    - migrate to clean pyproject.toml and hatchling
+    - change default config file handling
+    - rename git default branch
+
 - **0.6.5** (2024-05-06):
     - catch geocoder error
 

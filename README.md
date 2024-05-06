@@ -37,7 +37,7 @@ pip3 install wolkenbruch
 
 ### Configuration
 
-Copy the example configuration file [wolkenbruch.yml.example](https://gitlab.com/christoph.fink/wolkenbruch/-/raw/master/wolkenbruch.yml.example) to a suiteable location, depending on your operating system:
+Copy the example configuration file [wolkenbruch.yml.template](https://gitlab.com/christoph.fink/wolkenbruch/-/raw/main/src/wolkenbruch/wolkenbruch.yml.template) to a suiteable location, depending on your operating system:
 
 - on Linux systems:
     - system-wide configuration: `/etc/wolkenbruch.yml`
@@ -86,7 +86,7 @@ Run `wolkenbruch` to check the precipitation for the next 14 hours and send you 
 
 #### Systemd timer
 
-Copy `wolkenbruch.service` and `wolkenbruch.timer` from [extra/systemd/](https://gitlab.com/christoph.fink/wolkenbruch/-/tree/master/extra/systemd/) to `/etc/systemd/user/` or `~/.config/systemd/user/` and enable the timer to run wolkenbruch at 6:30 every morning:
+Copy `wolkenbruch.service` and `wolkenbruch.timer` from [extra/systemd/](https://gitlab.com/christoph.fink/wolkenbruch/-/tree/main/extra/systemd/) to `/etc/systemd/user/` or `~/.config/systemd/user/` and enable the timer to run wolkenbruch at 6:30 every morning:
 
 ```sh
 systemctl --user daemon-reload

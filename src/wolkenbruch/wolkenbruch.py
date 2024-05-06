@@ -23,7 +23,9 @@ import sys
 
 import geocoder
 
-from .lib import Config, EMailSender, PrecipitationChecker
+from config import Config
+from emailsender import EMailSender
+from precipitationchecker import PrecipitationChecker
 
 
 __all__ = ["remind_me_if_it_rains"]
