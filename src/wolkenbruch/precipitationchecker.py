@@ -40,7 +40,7 @@ class PrecipitationChecker:
         f"https://api.met.no/weatherapi/locationforecast/{API_VERSION:s}/compact"
     )
     API_HEADERS = {
-        "User-agent": "python-wolkenbruch (https://gitlab.com/christophfink/wolkenbruch/"
+        "User-agent": "python-wolkenbruch (https://github.com/christophfink/wolkenbruch/"
     }
 
     def __init__(self, lat, lon, n_hours=14, *args, **kwargs):

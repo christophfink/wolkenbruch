@@ -32,10 +32,10 @@ dynamic = ["version"]
 wolkenbruch = "wolkenbruch.__main__:main"
 
 [project.urls]
-Documentation = "https://gitlab.com/christophfink/wolkenbruch/"
-Repository = "https://gitlab.com/christophfink/wolkenbruch/"
-"Change log" = "https://gitlab.com/christophfink/wolkenbruch/-/blob/master/CHANGELOG.md"
-"Bug tracker" = "https://gitlab.com/christophfink/wolkenbruch/-/issues"
+Documentation = "https://github.com/christophfink/wolkenbruch/"
+Repository = "https://github.com/christophfink/wolkenbruch/"
+"Change log" = "https://github.com/christophfink/wolkenbruch/blob/main/CHANGELOG.md"
+"Bug tracker" = "https://github.com/christophfink/wolkenbruch/issues"
 
 [tool.hatch.version]
 path = "src/wolkenbruch/__init__.py"
