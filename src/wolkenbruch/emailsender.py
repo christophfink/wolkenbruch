@@ -52,7 +52,7 @@ class EMailSender:
         smtp_password="",
         starttls=True,
         *args,
-        **kwargs
+        **kwargs,
     ):
         """
         Sends e-mails
