@@ -1,3 +1,6 @@
+- **0.7.2** (2024-05-06):
+    - fix broken local imports
+
 - **0.7.1** (2024-05-06):
     - migrate source repository and build toolchain to GitHub
 
