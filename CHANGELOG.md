@@ -1,4 +1,4 @@
-- **0.6.6** (2024-05-06):
+- **0.7.0** (2024-05-06):
     - migrate to clean pyproject.toml and hatchling
     - change default config file handling
     - rename git default branch
