@@ -47,7 +47,12 @@ def remind_me_if_it_rains():
     except KeyError:
         verbose = False
 
-    lat, lon = geocoder.osm(config["place"]).latlng
+    try:
+        lat, lon = geocoder.osm(config["place"]).latlng
+    except (TypeError, ValueError) as exception:
+        raise RuntimeError(
+            f"Could not find location ‘{config['place']}’"
+        ) from exception
 
     hourly_precipitation_rates = \
         PrecipitationChecker(lat, lon).hourly_precipitation_rates[:N_HOURS]

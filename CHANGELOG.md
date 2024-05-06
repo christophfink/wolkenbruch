@@ -1,3 +1,6 @@
+- **0.6.5** (2024-05-06):
+    - catch geocoder error
+
 - **0.6.4** (2021-03-16):
     - fix systemd data_files location
 
