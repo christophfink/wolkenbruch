@@ -30,34 +30,28 @@ import yaml
 
 
 class Config:
-    """ Global configuration object
+    """Global configuration object
 
-        Tries to load configuration from YAML files in default locations
-        (/etc/{module}.yml, ~/.config/{module}.yml, %APPDATA%/{module}.yml,
-        ${XDG_CONFIG_HOME}/{module}.yml).
+    Tries to load configuration from YAML files in default locations
+    (/etc/{module}.yml, ~/.config/{module}.yml, %APPDATA%/{module}.yml,
+    ${XDG_CONFIG_HOME}/{module}.yml).
 
-        Configuration file location can be overriden by specifying
-        `config_files` or a base name `config_filesBaseName` (replaces
-        “{module}” in the file locations listed above)
+    Configuration file location can be overriden by specifying
+    `config_files` or a base name `config_filesBaseName` (replaces
+    “{module}” in the file locations listed above)
 
-        Arguments:
-            content of the config file
+    Arguments:
+        content of the config file
 
-        Args:
-            config_files (list of str, optional): override configuration
-                file locations
-            config_files_basename (str): override configuration file names
+    Args:
+        config_files (list of str, optional): override configuration
+            file locations
+        config_files_basename (str): override configuration file names
     """
-    DEFAULT_CONFIG = os.path.join(
-        os.path.dirname(__file__),
-        "default.yml"
-    )
 
-    def __init__(
-            self,
-            config_files=None,
-            config_files_basename=None
-    ):
+    DEFAULT_CONFIG = os.path.join(os.path.dirname(__file__), "default.yml")
+
+    def __init__(self, config_files=None, config_files_basename=None):
         self._config = {}
         self._config_files = []
 
@@ -74,13 +68,13 @@ class Config:
                 os.path.abspath(
                     os.path.join(
                         (
-                            os.environ.get('APPDATA')
-                            or os.environ.get('XDG_CONFIG_HOME')
-                            or os.path.join(os.environ['HOME'], '.config')
+                            os.environ.get("APPDATA")
+                            or os.environ.get("XDG_CONFIG_HOME")
+                            or os.path.join(os.environ["HOME"], ".config")
                         ),
-                        "{:s}.yml".format(config_files_basename)
+                        "{:s}.yml".format(config_files_basename),
                     )
-                )
+                ),
             ]
 
         self._config = self._load_config()
@@ -90,11 +84,7 @@ class Config:
 
         for config_file in self._config_files:
             try:
-                config.update(
-                    yaml.safe_load(
-                        open(config_file, "r", encoding="utf-8")
-                    )
-                )
+                config.update(yaml.safe_load(open(config_file, "r", encoding="utf-8")))
             except FileNotFoundError:
                 pass
 

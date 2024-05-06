@@ -25,7 +25,7 @@ an e-mail to remind me to take my rain gear with me
 
 __all__ = [
     "__version__",
-    "remind_me_if_it_rains"
+    "remind_me_if_it_rains",
 ]
 
 

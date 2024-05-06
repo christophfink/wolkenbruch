@@ -15,12 +15,12 @@
 #
 #   You should have received a copy of the GNU General Public License
 #   along with this program; if not, see <http://www.gnu.org/licenses/>.
-""" Wolkenbruch library function """
+"""Wolkenbruch library function"""
 
 __all__ = [
     "Config",
     "EMailSender",
-    "PrecipitationChecker"
+    "PrecipitationChecker",
 ]
 
 from .config import Config

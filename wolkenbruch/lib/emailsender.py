@@ -23,13 +23,39 @@ import email.message
 import smtplib
 
 
-__all__ = [
-    "EMailSender"
-]
+__all__ = ["EMailSender"]
 
 
 class EMailSender:
-    """ Sends e-mails
+    """Sends e-mails
+
+    Args:
+        from_addr:  Sender address
+        to_addr:    Receiver address
+        subject:    Subject line
+        body:       e-mail text
+        smtp_host:  host name/ip address to use as an SMTP server,
+                    can contain port in the form [host]:[port]
+        smtp_user:  SMTP user name if authentication required
+        smtp_password: SMTP password if authentication required
+        starttls:   use TLS (default: True)
+    """
+
+    def __init__(
+        self,
+        from_addr="",
+        to_addr="",
+        subject="",
+        body="",
+        smtp_host="",
+        smtp_user="",
+        smtp_password="",
+        starttls=True,
+        *args,
+        **kwargs
+    ):
+        """
+        Sends e-mails
 
         Args:
             from_addr:  Sender address
@@ -41,34 +67,6 @@ class EMailSender:
             smtp_user:  SMTP user name if authentication required
             smtp_password: SMTP password if authentication required
             starttls:   use TLS (default: True)
-    """
-
-    def __init__(
-            self,
-            from_addr="",
-            to_addr="",
-            subject="",
-            body="",
-            smtp_host="",
-            smtp_user="",
-            smtp_password="",
-            starttls=True,
-            *args,
-            **kwargs
-    ):
-        """
-            Sends e-mails
-
-            Args:
-                from_addr:  Sender address
-                to_addr:    Receiver address
-                subject:    Subject line
-                body:       e-mail text
-                smtp_host:  host name/ip address to use as an SMTP server,
-                            can contain port in the form [host]:[port]
-                smtp_user:  SMTP user name if authentication required
-                smtp_password: SMTP password if authentication required
-                starttls:   use TLS (default: True)
         """
         self.from_addr = from_addr
         self.to_addr = to_addr
@@ -81,18 +79,12 @@ class EMailSender:
         self.starttls = starttls
 
     def send_message(self):
-        """ Sends a message to `to_addr` """
+        """Sends a message to `to_addr`"""
         with smtplib.SMTP(self.smtp_host) as smtp:
             if self.starttls:
                 smtp.starttls()
-            if (
-                    self.smtp_user != ""
-                    and self.smtp_password != ""
-            ):
-                smtp.login(
-                    self.smtp_user,
-                    self.smtp_password
-                )
+            if self.smtp_user != "" and self.smtp_password != "":
+                smtp.login(self.smtp_user, self.smtp_password)
 
             message = email.message.EmailMessage()
             message["From"] = self.from_addr

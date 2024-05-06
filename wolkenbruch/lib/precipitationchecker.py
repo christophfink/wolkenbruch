@@ -22,34 +22,28 @@
 import requests
 
 
-__all__ = [
-    "PrecipitationChecker"
-]
+__all__ = ["PrecipitationChecker"]
 
 
 class PrecipitationChecker:
-    """ Check the forecast precipitation at a location
+    """Check the forecast precipitation at a location
 
-        Args:
-            lat:        Latitude
-            lon:        Longitude
-            n_hours:    calculate the average precipitation
-                        rate for the next `n_hours` hours
+    Args:
+        lat:        Latitude
+        lon:        Longitude
+        n_hours:    calculate the average precipitation
+                    rate for the next `n_hours` hours
     """
+
     API_VERSION = "2.0"
-    API_ENDPOINT = "https://api.met.no/weatherapi/locationforecast/{VERSION:s}/compact".format(VERSION=API_VERSION)
+    API_ENDPOINT = (
+        f"https://api.met.no/weatherapi/locationforecast/{API_VERSION:s}/compact"
+    )
     API_HEADERS = {
-        "User-agent": "python-wolkenbruch (https://gitlab.com/christoph.fink/wolkenbruch/"
+        "User-agent": "python-wolkenbruch (https://gitlab.com/christophfink/wolkenbruch/"
     }
 
-    def __init__(
-            self,
-            lat,
-            lon,
-            n_hours=14,
-            *args,
-            **kwargs
-    ):
+    def __init__(self, lat, lon, n_hours=14, *args, **kwargs):
         """
         Check the forecast precipitation at a location.
 
@@ -70,14 +64,15 @@ class PrecipitationChecker:
             self.API_ENDPOINT,
             params={
                 "lat": self.lat,
-                "lon": self.lon
+                "lon": self.lon,
             },
-            headers=self.API_HEADERS
+            headers=self.API_HEADERS,
         )
         forecast = forecast.json()
 
         with open("/tmp/wolkenbruch.json", "w") as f:
             import json
+
             f.write(json.dumps(forecast, sort_keys=True, indent=4))
 
         self.precipitation = [

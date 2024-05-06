@@ -23,23 +23,17 @@ import sys
 
 import geocoder
 
-from .lib import (
-    Config,
-    EMailSender,
-    PrecipitationChecker
-)
+from .lib import Config, EMailSender, PrecipitationChecker
 
 
-__all__ = [
-    "remind_me_if_it_rains"
-]
+__all__ = ["remind_me_if_it_rains"]
 
 # How many hours to look into the future?
 N_HOURS = 14
 
 
 def remind_me_if_it_rains():
-    """ Remind me if rain is forecast """
+    """Remind me if rain is forecast"""
     config = Config()
 
     try:
@@ -54,13 +48,12 @@ def remind_me_if_it_rains():
             f"Could not find location ‘{config['place']}’"
         ) from exception
 
-    hourly_precipitation_rates = \
-        PrecipitationChecker(lat, lon).hourly_precipitation_rates[:N_HOURS]
+    hourly_precipitation_rates = PrecipitationChecker(
+        lat, lon
+    ).hourly_precipitation_rates[:N_HOURS]
 
-    average_precipitation_rate = \
-        statistics.fmean(hourly_precipitation_rates)
-    max_precipitation_rate = \
-        max(hourly_precipitation_rates)
+    average_precipitation_rate = statistics.fmean(hourly_precipitation_rates)
+    max_precipitation_rate = max(hourly_precipitation_rates)
 
     if verbose:
         print(
@@ -70,18 +63,15 @@ def remind_me_if_it_rains():
             ).format(
                 place=config["place"],
                 a=average_precipitation_rate,
-                m=max_precipitation_rate
+                m=max_precipitation_rate,
             ),
             file=sys.stderr,
-            end=""
+            end="",
         )
 
     if (
-            average_precipitation_rate
-            > config["average_precipitation_rate_threshold"]
-
-            or max_precipitation_rate
-            > config["max_precipitation_rate_threshold"]
+        average_precipitation_rate > config["average_precipitation_rate_threshold"]
+        or max_precipitation_rate > config["max_precipitation_rate_threshold"]
     ):
         EMailSender(
             config["email"]["from"],
@@ -89,21 +79,21 @@ def remind_me_if_it_rains():
             config["email"]["subject"],
             config["email"]["message"].format(
                 a=average_precipitation_rate,
-                m=max_precipitation_rate
+                m=max_precipitation_rate,
             ),
             config["smtp"]["host"],
             config["smtp"]["user"],
-            config["smtp"]["password"]
+            config["smtp"]["password"],
         ).send_message()
 
         if verbose:
             print(
                 "Sending reminder to {:s} ".format(config["email"]["to"]),
-                file=sys.stderr
+                file=sys.stderr,
             )
     else:
         if verbose:
             print(
                 "NOT sending reminder to {:s} ".format(config["email"]["to"]),
-                file=sys.stderr
+                file=sys.stderr,
             )
