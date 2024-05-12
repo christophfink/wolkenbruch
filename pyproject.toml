@@ -12,6 +12,7 @@ authors = [
 ]
 
 dependencies = [
+    "ConfigArgParse",
     "geocoder",
     "importlib_resources",
     "PyYAML",

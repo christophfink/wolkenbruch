@@ -1,3 +1,6 @@
+- **0.7.3** (2024-05-12):
+    - fix configuration file handling
+
 - **0.7.2** (2024-05-06):
     - fix broken local imports
 

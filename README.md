@@ -70,18 +70,19 @@ Adapt the configuration:
 # example configuration file
 # (/etc/wolkenbruch.yml, ~/.config/wolkenbruch.yml,
 #    %APPDATA%/wolkenbruch.yml, ${XDG_CONFIG_HOME}/wolkenbruch.yml)
-smtp:
-    host:     localhost:587
-    user:     foobar
-    password: BARFOO
-email:
-    from:     me@whereever.com
-    to:       myself@whereever.com
-    subject:  Pack your rain gear!
-    message:  The forecast precipitation rate for today is {a:.2f} mm/h, maximum {m:2f} mm/h.
 place: Helsinki
 average_precipitation_rate_threshold: 0.1
 max_precipitation_rate_threshold: 0.5
+
+email-to: myself@whereever.com
+email-from: me@whereever.com
+email-subject: Pack your rain gear!
+email-message: The average forecast precipitation rate for today is {a:0.2f}, maximum {m:0.2f} mm/h.
+
+smtp-host: localhost:587
+smtp-user: foobar
+smtp-password: BARFOO
+
 verbose: False
 ```
 
