@@ -39,22 +39,21 @@ class PrecipitationChecker:
     API_ENDPOINT = (
         f"https://api.met.no/weatherapi/locationforecast/{API_VERSION:s}/compact"
     )
-    API_HEADERS = {
-        "User-agent": "python-wolkenbruch (https://github.com/christophfink/wolkenbruch/"
-    }
 
-    def __init__(self, lat, lon, n_hours=14, *args, **kwargs):
+    def __init__(self, lat, lon, user_agent, n_hours=14, *args, **kwargs):
         """
         Check the forecast precipitation at a location.
 
         Args:
             lat:        Latitude
             lon:        Longitude
+            user_agent: pass this User-Agent header to the API endpoint
             n_hours:    calculate the average precipitation
                         rate for the next `n_hours` hours
         """
         self.lat = lat
         self.lon = lon
+        self.user_agent = self.user_agent
         self.n_hours = n_hours
 
         self.precipitation = []
@@ -66,14 +65,9 @@ class PrecipitationChecker:
                 "lat": self.lat,
                 "lon": self.lon,
             },
-            headers=self.API_HEADERS,
+            headers={"User-Agent": self.user_agent},
         )
         forecast = forecast.json()
-
-        with open("/tmp/wolkenbruch.json", "w") as f:
-            import json
-
-            f.write(json.dumps(forecast, sort_keys=True, indent=4))
 
         self.precipitation = [
             timestamp["data"]["next_1_hours"]["details"]["precipitation_amount"]

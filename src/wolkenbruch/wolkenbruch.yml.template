@@ -58,6 +58,15 @@
 
 
 
+# Set the User-Agent header that is sent to the API endpoints. 
+# Both the OSM Nominatim gazetteer API and the met.no weather forecast API
+# require a custom User-Agent header on all queries. The default is the package
+# name and the current version
+
+# user-agent: python-wolkenbruch
+
+
+
 # Show more detailed output
 
 #verbose: False

@@ -23,6 +23,7 @@ import sys
 
 import geocoder
 
+from . import __version__
 from .config import Config
 from .emailsender import EMailSender
 from .precipitationchecker import PrecipitationChecker
@@ -99,19 +100,30 @@ config.argparser.add(
     default="",
 )
 
+config.argparser.add(
+    "--user-agent",
+    help="User-Agent header to report to API services",
+    default=f"python-wolkenbruch-{__version__} (https://github.com/christophfink/wolkenbruch/)",
+)
+
 
 def remind_me_if_it_rains():
     """Remind me if rain is forecast"""
 
     try:
-        lat, lon = geocoder.osm(config.arguments.place).latlng
+        lat, lon = geocoder.osm(
+            config.arguments.place,
+            headers={"User-Agent": config.arguments.user_agent},
+        ).latlng
     except (TypeError, ValueError) as exception:
         raise RuntimeError(
             f"Could not find location ‘{config.arguments.place}’"
         ) from exception
 
     hourly_precipitation_rates = PrecipitationChecker(
-        lat, lon
+        lat,
+        lon,
+        user_agent=config.arguments.user_agent,
     ).hourly_precipitation_rates[:N_HOURS]
 
     average_precipitation_rate = statistics.fmean(hourly_precipitation_rates)
