@@ -1,3 +1,6 @@
+- **0.8.1** (2025-01-28):
+    - migrate to PyPi Trusted Publisher authentication
+
 - **0.8.0** (2025-01-28):
     - allow custom user-agent headers for API queries
 
