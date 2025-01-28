@@ -32,4 +32,4 @@ __all__ = [
 from .wolkenbruch import remind_me_if_it_rains
 
 
-__version__ = "0.8.0"
+__version__ = "0.8.1dev0"
