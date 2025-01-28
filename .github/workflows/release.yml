@@ -35,6 +35,9 @@ jobs:
     name: Upload built package to PyPi
     runs-on: ubuntu-latest
     needs: [build]
+    environment:
+      name: wolkenbruch-build
+      url: https://pypi.org/p/wolkenbruch
     permissions:
       id-token: write
     steps:
