@@ -23,7 +23,6 @@ import sys
 
 import geocoder
 
-from . import __version__
 from .config import Config
 from .emailsender import EMailSender
 from .precipitationchecker import PrecipitationChecker
@@ -103,7 +102,7 @@ config.argparser.add(
 config.argparser.add(
     "--user-agent",
     help="User-Agent header to report to API services",
-    default=f"python-wolkenbruch-{__version__} (https://github.com/christophfink/wolkenbruch/)",
+    default="python-wolkenbruch (https://github.com/christophfink/wolkenbruch/)",
 )
 
 
