@@ -83,6 +83,8 @@ smtp-host: localhost:587
 smtp-user: foobar
 smtp-password: BARFOO
 
+user-agent: wolkenbruch
+
 verbose: False
 ```
 
