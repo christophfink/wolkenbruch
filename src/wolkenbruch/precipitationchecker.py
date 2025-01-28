@@ -53,7 +53,7 @@ class PrecipitationChecker:
         """
         self.lat = lat
         self.lon = lon
-        self.user_agent = self.user_agent
+        self.user_agent = user_agent
         self.n_hours = n_hours
 
         self.precipitation = []
