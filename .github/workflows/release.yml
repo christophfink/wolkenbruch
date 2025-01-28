@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     environment:
-      name: wolkenbruch-build
+      name: pypi
       url: https://pypi.org/p/wolkenbruch
     permissions:
       id-token: write
