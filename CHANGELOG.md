@@ -1,4 +1,4 @@
-- **0.7.4** (2025-01-28):
+- **0.8.0** (2025-01-28):
     - allow custom user-agent headers for API queries
 
 - **0.7.3** (2024-05-12):
